@@ -34,7 +34,6 @@ $.ajax({
   url: "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents",
 })
   .done(function( data ) {
-  
   });
 ```
 
@@ -59,21 +58,21 @@ $.ajax({
 ]
 ```
 
-This endpoint retrieves all kittens.
+This endpoint retrieves all incidents.
 
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET https://shielded-ravine-63777.herokuapp.com/api/v1/incidents`
 
 ### Query Parameters
 
-Parameter | Default | Description
+Parameter | Required | Description
 --------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
+order_by | <aside class="warning">Required</aside> | If set to true, the result will also include cats.
 available | true | If set to false, the result will include kittens that have already been adopted.
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — The full incident list will only !
 </aside>
 
 ## Get a Specific Kitten
