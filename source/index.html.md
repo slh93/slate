@@ -40,22 +40,28 @@ $.ajax({
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
+  {"incidents":
+    [
+      {
+        "id":1,
+        "created_at":"2016-03-16T04:19:16.330Z",
+        "detail":"Example details listed here",
+        "location":"Halligan Hall, Medford, MA, United States",
+        "title":"Broken Glass",
+        "priority":"High",
+        "img_url":null
+      },
+      {
+        "id":2,
+        "created_at":"2016-03-16T04:19:53.519Z",
+        "detail":"More information",
+        "location":"Latin Way Medford MA",
+        "title":"Weird Smell",
+        "priority":"Medium",
+        "img_url":null
+      }
+    ]
   }
-]
 ```
 
 This endpoint retrieves all incidents.
@@ -66,58 +72,55 @@ This endpoint retrieves all incidents.
 
 ### Query Parameters
 
-Parameter | Required | Description
---------- | ------- | -----------
-order_by | <aside class="warning">Required</aside> | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+limit | False | 500 | Limits the number of incidents that are returned. Max:1000.
+order_by | False | id | Options: id, created_by, date.
 
 <aside class="success">
-Remember — The full incident list will only !
+Remember — Try to limit the number of incidents you request to avoid slowing your page load time!
 </aside>
 
-## Get a Specific Kitten
 
-```ruby
-require 'kittn'
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Get a Specific Incident
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
+curl "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/[id]"
+```
+
+```javascript
+$.ajax({
+  method: "GET",
+  url: "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/[id]",
+})
+  .done(function( data ) {
+  });
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "id":2,
+  "created_at":"2016-03-16T04:19:53.519Z",
+  "detail":"More information",
+  "location":"Latin Way Medford MA",
+  "title":"Weird Smell",
+  "priority":"Medium",
+  "img_url":null
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves a specific incident.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`GET https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/[id]`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+id | True | - | The ID for the incident to be retrieved
