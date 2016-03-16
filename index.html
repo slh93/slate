@@ -122,6 +122,8 @@
 
 <p>Welcome to the IncidentReporter API! You can use our API to access IncidentReporter API endpoints.</p>
 
+<p>Currently, all endpoints can be accessed without any type of authorization header. </p>
+
 <h1 id="incidents">Incidents</h1>
 
 <h2 id="get-all-incidents">Get All Incidents</h2>
@@ -244,6 +246,156 @@ Remember — Try to limit the number of incidents you request to avoid slowing y
 <td>The ID for the incident to be retrieved</td>
 </tr>
 </tbody></table>
+
+<h2 id="create-a-new-incident">Create a New Incident</h2>
+<pre class="highlight shell"><code>curl --data <span class="s2">"title=value1&amp;detail=value2&amp;location=value3&amp;priority=value4"</span>
+      <span class="s2">"https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/new"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s2">"POST"</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/new"</span><span class="p">,</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">data_object</span><span class="p">,</span>
+  <span class="na">dataType</span><span class="p">:</span> <span class="nx">dataType</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="p">});</span>
+
+
+<span class="o">&lt;</span><span class="nx">aside</span> <span class="kr">class</span><span class="o">=</span><span class="s2">"success"</span><span class="o">&gt;</span>
+<span class="nx">You</span> <span class="nx">should</span> <span class="nx">fill</span> <span class="nx">the</span> <span class="nx">data_object</span> <span class="kd">with</span> <span class="nx">the</span> <span class="nx">content</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">posted</span> <span class="nx">to</span> <span class="nx">the</span> <span class="nx">endpoint</span>
+<span class="o">&lt;</span><span class="sr">/aside&gt; </span><span class="err"> 
+</span></code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"success"</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"id"</span><span class="p">:[</span><span class="err">assigned</span><span class="w"> </span><span class="err">ID</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates a new incident.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/new</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>True</td>
+<td>-</td>
+<td>The title for the new incident</td>
+</tr>
+<tr>
+<td>detail</td>
+<td>True</td>
+<td>-</td>
+<td>The detail for a new incident</td>
+</tr>
+<tr>
+<td>location</td>
+<td>True</td>
+<td>-</td>
+<td>The string value of a location</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>True</td>
+<td>-</td>
+<td>Low, Medium, High</td>
+</tr>
+<tr>
+<td>img_url</td>
+<td>False</td>
+<td>-</td>
+<td>The url for an image to be associated with the incident</td>
+</tr>
+</tbody></table>
+
+<h1 id="users">Users</h1>
+
+<h2 id="get-all-users">Get All Users</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://shielded-ravine-63777.herokuapp.com/api/v1/users"</span>
+</code></pre>
+<pre class="highlight javascript"><code><span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+  <span class="na">method</span><span class="p">:</span> <span class="s2">"GET"</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="s2">"https://shielded-ravine-63777.herokuapp.com/api/v1/users"</span><span class="p">,</span>
+<span class="p">})</span>
+  <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="p">});</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="nt">"incidents"</span><span class="p">:</span><span class="w">
+    </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-03-16T04:19:16.330Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"detail"</span><span class="p">:</span><span class="s2">"Example details listed here"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="s2">"Halligan Hall, Medford, MA, United States"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Broken Glass"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="s2">"High"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"img_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"2016-03-16T04:19:53.519Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"detail"</span><span class="p">:</span><span class="s2">"More information"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="s2">"Latin Way Medford MA"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Weird Smell"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"priority"</span><span class="p">:</span><span class="s2">"Medium"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"img_url"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint retrieves all users.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://shielded-ravine-63777.herokuapp.com/api/v1/users</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>False</td>
+<td>500</td>
+<td>Limits the number of incidents that are returned. Max:1000.</td>
+</tr>
+<tr>
+<td>order_by</td>
+<td>False</td>
+<td>id</td>
+<td>Options: id, created_by, date.</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — Try to limit the number of incidents you request to avoid slowing your page load time!
+</aside>
 
       </div>
       <div class="dark-box">
