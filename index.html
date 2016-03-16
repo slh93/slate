@@ -132,7 +132,6 @@
   <span class="na">url</span><span class="p">:</span> <span class="s2">"https://shielded-ravine-63777.herokuapp.com/api/v1/incidents"</span><span class="p">,</span>
 <span class="p">})</span>
   <span class="p">.</span><span class="nx">done</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">data</span> <span class="p">)</span> <span class="p">{</span>
-
   <span class="p">});</span>
 </code></pre>
 
@@ -157,24 +156,24 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves all kittens.</p>
+<p>This endpoint retrieves all incidents.</p>
 
 <h3 id="http-request">HTTP Request</h3>
 
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
+<p><code class="prettyprint">GET https://shielded-ravine-63777.herokuapp.com/api/v1/incidents</code></p>
 
 <h3 id="query-parameters">Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
+<th>Required</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
+<td>order_by</td>
+<td><aside class="warning">Required</aside></td>
 <td>If set to true, the result will also include cats.</td>
 </tr>
 <tr>
@@ -185,7 +184,7 @@
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — The full incident list will only !
 </aside>
 
 <h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
