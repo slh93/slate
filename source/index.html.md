@@ -2,8 +2,8 @@
 title: API Reference
 
 language_tabs:
-  - shell
-  - JavaScript
+  - shell : Shell
+  - javascript : JavaScript
 
 
 toc_footers:
@@ -28,8 +28,7 @@ Welcome to the IncidentReporter API! You can use our API to access IncidentRepor
 curl "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents"
 ```
 
-```JavaScript
-<code>
+```javascript
 $.ajax({
   method: "GET",
   url: "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents",
@@ -37,7 +36,6 @@ $.ajax({
   .done(function( data ) {
   
   });
-</code>
 ```
 
 > The above command returns JSON structured like this:
