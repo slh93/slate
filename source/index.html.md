@@ -140,16 +140,11 @@ curl --data "title=value1&detail=value2&location=value3&priority=value4"
 $.ajax({
   method: "POST",
   url: "https://shielded-ravine-63777.herokuapp.com/api/v1/incidents/new",
-  data: data_object,
+  data: "title=value1&detail=value2&location=value3&priority=value4",
   dataType: dataType
 })
   .done(function( data ) {
   });
-
-
-<aside class="success">
-You should fill the data_object with the content to be posted to the endpoint
-</aside>  
 ```
 
 > The above command returns JSON structured like this:
@@ -157,7 +152,7 @@ You should fill the data_object with the content to be posted to the endpoint
 ```json
 {
   "status":"success", 
-  "id":[assigned ID]
+  "id":[assigned incident ID]
 }
 ```
 
@@ -181,16 +176,16 @@ img_url | False | - | The url for an image to be associated with the incident
 
 # Users
 
-## Get All Users
+## Get a Specific User
 
 ```shell
-curl "https://shielded-ravine-63777.herokuapp.com/api/v1/users"
+curl "https://shielded-ravine-63777.herokuapp.com/api/v1/users/[id]"
 ```
 
 ```javascript
 $.ajax({
   method: "GET",
-  url: "https://shielded-ravine-63777.herokuapp.com/api/v1/users",
+  url: "https://shielded-ravine-63777.herokuapp.com/api/v1/users/[id]",
 })
   .done(function( data ) {
   });
@@ -199,44 +194,69 @@ $.ajax({
 > The above command returns JSON structured like this:
 
 ```json
-  {"incidents":
-    [
-      {
-        "id":1,
-        "created_at":"2016-03-16T04:19:16.330Z",
-        "detail":"Example details listed here",
-        "location":"Halligan Hall, Medford, MA, United States",
-        "title":"Broken Glass",
-        "priority":"High",
-        "img_url":null
-      },
-      {
-        "id":2,
-        "created_at":"2016-03-16T04:19:53.519Z",
-        "detail":"More information",
-        "location":"Latin Way Medford MA",
-        "title":"Weird Smell",
-        "priority":"Medium",
-        "img_url":null
-      }
-    ]
-  }
+{
+  "id":1,
+  "fname":"First Name",
+  "lname":"Last Name"
+}
 ```
 
 This endpoint retrieves all users.
 
 ### HTTP Request
 
-`GET https://shielded-ravine-63777.herokuapp.com/api/v1/users`
+`GET https://shielded-ravine-63777.herokuapp.com/api/v1/users/[id]`
+
+### URL Parameters
+
+Parameter | Required | Default | Description
+--------- | -------- | ------- | -----------
+id | True | - | The ID for the user to be retrieved
+
+<aside class="success">
+Soon you will only be able to access user information for users that you have permission to view
+</aside>
+
+
+## Create a New User
+
+```shell
+curl --data "fname=value1&lname=value2"
+      "https://shielded-ravine-63777.herokuapp.com/api/v1/users/new"
+```
+
+```javascript
+$.ajax({
+  method: "POST",
+  url: "https://shielded-ravine-63777.herokuapp.com/api/v1/users/new",
+  data: "fname=value1&lname=value2",
+  dataType: dataType
+})
+  .done(function( data ) {
+  });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status":"success", 
+  "id":[assigned user ID]
+}
+```
+
+This endpoint creates a new incident.
+
+
+### HTTP Request
+
+`POST https://shielded-ravine-63777.herokuapp.com/api/v1/users/new`
 
 ### Query Parameters
 
 Parameter | Required | Default | Description
 --------- | -------- | ------- | -----------
-limit | False | 500 | Limits the number of incidents that are returned. Max:1000.
-order_by | False | id | Options: id, created_by, date.
+fname | True | - | String, first name of user
+lname | True | - | String, last name of user
 
-<aside class="success">
-Remember — Try to limit the number of incidents you request to avoid slowing your page load time!
-</aside>
 
